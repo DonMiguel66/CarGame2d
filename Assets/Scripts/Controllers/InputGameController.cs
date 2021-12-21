@@ -6,8 +6,11 @@ namespace CarGame2D
 {
     public class InputGameController : BasicController
     {
-        
-        private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/endlessMove" };
+
+        //private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/endlessMove" };
+        //private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/SwipeInput" };
+        //private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/JoystickInput" };
+        private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/TouchButtonInput" };
         private BasicInputView _view;
 
         public InputGameController(SubscribeProperty<float> leftMove, SubscribeProperty<float> rightMove, CarModel car)

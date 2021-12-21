@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3964461214129220861}
   - component: {fileID: 3041759023331106558}
-  - component: {fileID: 140737336}
+  - component: {fileID: 3047279592904285066}
   m_Layer: 0
   m_Name: ground1
   m_TagString: Untagged
@@ -47,6 +47,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &140737336
+--- !u!114 &3047279592904285066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,11 +92,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1670990735255490663}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b368719156d46474b852e8c56e609477, type: 3}
+  m_Script: {fileID: 11500000, guid: 117c728339860324cb944df493c444dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _leftBorder: -17.81
-  _rightBorder: 17.82
+  _rightBorder: 17.81
   _relativeSpeedRate: 1
 --- !u!1 &2568450156852823711
 GameObject:
@@ -107,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8954071555566784289}
   - component: {fileID: 2189392900481106643}
-  - component: {fileID: 2456894769269428648}
+  - component: {fileID: 6914253597612278669}
   m_Layer: 0
   m_Name: sky2
   m_TagString: Untagged
@@ -144,6 +145,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -179,7 +181,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2456894769269428648
+--- !u!114 &6914253597612278669
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,11 +190,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2568450156852823711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b368719156d46474b852e8c56e609477, type: 3}
+  m_Script: {fileID: 11500000, guid: 117c728339860324cb944df493c444dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _leftBorder: -20.45
-  _rightBorder: 20.46
+  _rightBorder: 20.45
   _relativeSpeedRate: 0.3
 --- !u!1 &2807479611546755954
 GameObject:
@@ -203,6 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5432084578531805737}
+  - component: {fileID: 4552970530550058903}
   m_Layer: 0
   m_Name: background
   m_TagString: Untagged
@@ -225,6 +228,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4552970530550058903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2807479611546755954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e8f593fe43dd7745861ae0563489857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _backgrounds:
+  - {fileID: 942842943216341799}
+  - {fileID: 6914253597612278669}
+  - {fileID: 2604590619282853654}
+  - {fileID: 3047279592904285066}
+  - {fileID: 908101161800963144}
+  - {fileID: 8868027407111429138}
 --- !u!1 &3326407923804462301
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7906858733616461767}
   - component: {fileID: 6493526716158383502}
-  - component: {fileID: 1190817787}
+  - component: {fileID: 8868027407111429138}
   m_Layer: 0
   m_Name: ground3
   m_TagString: Untagged
@@ -272,6 +294,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -307,7 +330,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1190817787
+--- !u!114 &8868027407111429138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,11 +339,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3326407923804462301}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b368719156d46474b852e8c56e609477, type: 3}
+  m_Script: {fileID: 11500000, guid: 117c728339860324cb944df493c444dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _leftBorder: -17.81
-  _rightBorder: 17.82
+  _rightBorder: 17.81
   _relativeSpeedRate: 1
 --- !u!1 &3590461184429166328
 GameObject:
@@ -332,7 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5613625946660804523}
   - component: {fileID: 5355979326759684142}
-  - component: {fileID: 1589075209}
+  - component: {fileID: 908101161800963144}
   m_Layer: 0
   m_Name: ground2
   m_TagString: Untagged
@@ -369,6 +392,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -404,7 +428,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1589075209
+--- !u!114 &908101161800963144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -413,11 +437,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3590461184429166328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b368719156d46474b852e8c56e609477, type: 3}
+  m_Script: {fileID: 11500000, guid: 117c728339860324cb944df493c444dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _leftBorder: -17.81
-  _rightBorder: 17.82
+  _rightBorder: 17.81
   _relativeSpeedRate: 1
 --- !u!1 &5625024096290961257
 GameObject:
@@ -429,7 +453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6000352881310598706}
   - component: {fileID: 5697250785135903187}
-  - component: {fileID: 2418015379518058441}
+  - component: {fileID: 2604590619282853654}
   m_Layer: 0
   m_Name: sky3
   m_TagString: Untagged
@@ -466,6 +490,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -501,7 +526,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2418015379518058441
+--- !u!114 &2604590619282853654
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -510,11 +535,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5625024096290961257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b368719156d46474b852e8c56e609477, type: 3}
+  m_Script: {fileID: 11500000, guid: 117c728339860324cb944df493c444dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _leftBorder: -20.45
-  _rightBorder: 20.46
+  _rightBorder: 20.45
   _relativeSpeedRate: 0.3
 --- !u!1 &7039704320274304650
 GameObject:
@@ -526,7 +551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6713280446604109337}
   - component: {fileID: 1784686256225151229}
-  - component: {fileID: 4491843096377460275}
+  - component: {fileID: 942842943216341799}
   m_Layer: 0
   m_Name: sky1
   m_TagString: Untagged
@@ -563,6 +588,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -598,7 +624,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4491843096377460275
+--- !u!114 &942842943216341799
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -607,11 +633,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7039704320274304650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b368719156d46474b852e8c56e609477, type: 3}
+  m_Script: {fileID: 11500000, guid: 117c728339860324cb944df493c444dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _leftBorder: -20.45
-  _rightBorder: 20.46
+  _rightBorder: 20.45
   _relativeSpeedRate: 0.3
 --- !u!1 &8833280361136734726
 GameObject:

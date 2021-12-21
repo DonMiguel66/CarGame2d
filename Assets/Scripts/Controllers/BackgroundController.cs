@@ -5,6 +5,12 @@ namespace CarGame2D
 {
     public class BackgroundController : BasicController
     {
+        private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/background" };
+        private BackgroundView _view;
+        private readonly SubscribeProperty<float> _diff;
+        private readonly IReadonlySubscribeProperty<float> _leftMove;
+        private readonly IReadonlySubscribeProperty<float> _rightMove;
+
         public BackgroundController(IReadonlySubscribeProperty<float> leftMove,
         IReadonlySubscribeProperty<float> rightMove)
         {
@@ -20,11 +26,6 @@ namespace CarGame2D
             _rightMove.SubscribeOnChange(Move);
         }
 
-        private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/background" };
-        private BackgroundView _view;
-        private readonly SubscribeProperty<float> _diff;
-        private readonly IReadonlySubscribeProperty<float> _leftMove;
-        private readonly IReadonlySubscribeProperty<float> _rightMove;
 
         protected override void OnDispose()
         {
