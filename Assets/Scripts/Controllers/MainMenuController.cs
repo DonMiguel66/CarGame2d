@@ -31,6 +31,8 @@ namespace CarGame2D
         private void StartGame()
         {
             _profilePlayer.CurrentState.Value = GameState.Game;
+            _profilePlayer.AnalyticsTools.SendMessage("start_game", ("time", Time.realtimeSinceStartup));
+            _profilePlayer.AdsShower.ShowBanner();
         }
     }
 }
