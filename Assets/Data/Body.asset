@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4745cbd0730a2843b640f229666cb47, type: 3}
+  m_Name: Body
+  m_EditorClassIdentifier: 
+  _id: 1
+  _carPartType: 0
+  _title: SimpleBody
+  _prefab: {fileID: 3090505480287843465, guid: 49f46db3a5d14b24f9e9ade935d740cd, type: 3}

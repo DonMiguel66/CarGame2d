@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace CarGame2D
 {
-    public class ItemView : MonoBehaviour
+    public class ItemButtonView : MonoBehaviour
     {
         public event EventHandler<(IItem item, bool isInUse)> UseRequested;
         [SerializeField] private Text _title;

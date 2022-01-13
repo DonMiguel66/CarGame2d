@@ -14,16 +14,22 @@ namespace CarGame2D
         private MainController _mainController;
 
         [SerializeField]
-        private ItemConfig[] _itemsConfig;
+        private ItemConfig[] _defaultItemsConfig;
+
+        [SerializeField]
+        private ItemConfig[] _inventoryItemsConfig;
 
         [SerializeField]
         private UpgradeItemConfig[] _upgradeItemsCfg;
+
+        [SerializeField]
+        private CarPartsConfig _carPartsConfig;
 
         private void Awake()
         {
             var profilePlayer = new ProfilePlayerModel(15f, _unityAdsTools);
             profilePlayer.CurrentState.Value = GameState.Start;
-            _mainController = new MainController(_placeForUi, profilePlayer, _itemsConfig.ToList(), _upgradeItemsCfg.ToList());
+            _mainController = new MainController(_placeForUi, profilePlayer, _inventoryItemsConfig.ToList(), _upgradeItemsCfg.ToList(), _defaultItemsConfig.ToList());
         }
 
         protected void OnDestroy()

@@ -1,9 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace CarGame2D
 {
+    public enum CarPartType
+    {
+        Body,
+        Wheel,
+        Accelerator
+    }
     public class Item : IItem
     {        
         public int Id { get; }

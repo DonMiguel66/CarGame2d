@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4745cbd0730a2843b640f229666cb47, type: 3}
-  m_Name: Tire
+  m_Name: FastWheel
   m_EditorClassIdentifier: 
-  _id: 2
-  _title: Tire
+  _id: 3
+  _carPartType: 1
+  _title: FastWheel
+  _prefab: {fileID: 5287055351925467478, guid: 02852a28ddc55b94088b85ab284897db, type: 3}

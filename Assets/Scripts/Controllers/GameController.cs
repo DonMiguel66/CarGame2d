@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace CarGame2D
 {
     public class GameController : BasicController
@@ -14,9 +12,6 @@ namespace CarGame2D
 
             var inputGameController = new InputGameController(leftMoveDiff, rightMoveDiff, playerProfile.CurrentCar);
             AddController(inputGameController);
-
-            var carController = new CarController();
-            AddController(carController);            
 
         }
     }

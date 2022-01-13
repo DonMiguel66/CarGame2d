@@ -15,14 +15,14 @@ namespace CarGame2D
 
         private List<IItem> _itemInfoCollection;
         private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/ItemView" };
-        private List<ItemView> _itemsView = new List<ItemView>();
+        private List<ItemButtonView> _itemsView = new List<ItemButtonView>();
 
         public void Display(List<IItem> itemInfoCollection)
         {
             _itemInfoCollection = itemInfoCollection;
             foreach (var item in _itemInfoCollection)
             {
-                var view = Instantiate(ResourceLoader.LoadObject<ItemView>(_viewPath), _placeForUI, false);
+                var view = Instantiate(ResourceLoader.LoadObject<ItemButtonView>(_viewPath), _placeForUI, false);
                 view.Init(item);
                 view.UseRequested += (sender, arg) =>
                 {

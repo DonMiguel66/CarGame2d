@@ -31,7 +31,7 @@ namespace CarGame2D
 
         private IItem CreateItem(ItemConfig config)
         {
-            var itemInfo = new ItemInfo { Title = config.Title };
+            var itemInfo = new ItemInfo { Title = config.Title, CarPartType = config.CarPartType, Prefab = config.Prefab };           
             return new Item(config.Id, itemInfo);
         }
     }

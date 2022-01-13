@@ -10,7 +10,7 @@ namespace CarGame2D
     public class InventoryController : BasicController, IInventoryController
     {
         private readonly ProfilePlayerModel _playerModel;
-
+        private readonly CarView _carView;
         private readonly IInventoryModel _inventoryModel;
         private readonly InventoryView _inventoryView;
         private readonly IItemsRepository _itemsRepository;
@@ -18,7 +18,7 @@ namespace CarGame2D
         //private Action _hideAction;
         private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/InventoryView" };
 
-        public InventoryController(IInventoryModel inventoryModel, IItemsRepository itemsRepository, UpgradeHandlerRepository upgradeItemsRepository, ProfilePlayerModel playerModel,Transform inventoryUI)
+        public InventoryController(IInventoryModel inventoryModel, IItemsRepository itemsRepository, UpgradeHandlerRepository upgradeItemsRepository, ProfilePlayerModel playerModel, CarController carController,Transform inventoryUI)
         {
             _inventoryModel = inventoryModel;
             _itemsRepository = itemsRepository;
@@ -30,7 +30,7 @@ namespace CarGame2D
             AddGameObject(_inventoryView.gameObject);
             _inventoryView.Selected += OnItemSelected;
             _inventoryView.Deselected += OnItemDeselected;
-
+            _carView = carController.GetCarView();
         }
         public void SnowInventory()
         {
@@ -53,14 +53,14 @@ namespace CarGame2D
         private void OnItemSelected(object sender, IItem item)
         {
             _inventoryModel.EquipItem(item);
+            _carView.SetCarPart(item.Info.CarPartType, item.Info.Prefab);
             Debug.Log($"{item.Info.Title} equipped.");
-            Debug.Log($"Car speed : {_playerModel.CurrentCar.Speed}");
         }
         private void OnItemDeselected(object sender, IItem item)
         {
             _inventoryModel.UnequipItem(item);
+            _carView.RemoveCarPart(item.Info.CarPartType);
             Debug.Log($"{item.Info.Title} unequipped.");
-            Debug.Log($"Car speed : {_playerModel.CurrentCar.Speed}");
         }
         public IReadOnlyList<IItem> GetEquippedItems()
         {
