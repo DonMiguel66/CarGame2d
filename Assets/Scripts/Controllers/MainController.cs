@@ -1,23 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace CarGame2D
 {
     public class MainController : BasicController
     {
-        public MainController(Transform placeForUi, ProfilePlayerModel profilePlayer)
+        public MainController(Transform placeForUi, ProfilePlayerModel profilePlayer, List<ItemConfig> itemsCfg, List<UpgradeItemConfig> upgradedItemsCfg)
         {
             _profilePlayer = profilePlayer;
             _placeForUi = placeForUi;
+            _itemConfigs = itemsCfg;
+            _upgradeItemsCfg = upgradedItemsCfg;
             OnChangeGameState(_profilePlayer.CurrentState.Value);
             profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
         }
 
         private MainMenuController _mainMenuController;
         private GameController _gameController;
+        private InventoryController _inventoryController;
+
         private readonly Transform _placeForUi;
         private readonly ProfilePlayerModel _profilePlayer;
+        private readonly List<ItemConfig> _itemConfigs;
+        private readonly List<UpgradeItemConfig> _upgradeItemsCfg;
 
         protected override void OnDispose()
         {
@@ -36,6 +43,18 @@ namespace CarGame2D
                     _gameController?.Dispose();
                     break;
                 case GameState.Game:
+                    var inventoryModel = new InventoryModel();
+                    var itemsInventoryRepository = new ItemsRepository(_itemConfigs);
+                    AddController(itemsInventoryRepository);
+
+                    var upgradeItemsRepository = new UpgradeHandlerRepository(_upgradeItemsCfg);
+                    AddController(upgradeItemsRepository);
+
+                    var inventoryViewPath = new ResourcePath { PathResources = "Prefabs/InventoryView" };
+                    var inventoryView = Object.Instantiate(ResourceLoader.LoadObject<InventoryView>(inventoryViewPath), _placeForUi, false);
+                    _inventoryController = new InventoryController(inventoryModel, itemsInventoryRepository, upgradeItemsRepository, _profilePlayer, inventoryView.PlaceFotUI);
+                    AddController(_inventoryController);
+                    _inventoryController.SnowInventory();
                     _gameController = new GameController(_profilePlayer);
                     _mainMenuController?.Dispose();
                     break;

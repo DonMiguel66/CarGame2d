@@ -10,5 +10,10 @@ namespace CarGame2D
         {
             return Resources.Load<GameObject>(path.PathResources);
         }
+
+        internal static T LoadObject<T>(ResourcePath path) where T : UnityEngine.Object
+        {
+            return Resources.Load<T>(path.PathResources);
+        }
     }
 }

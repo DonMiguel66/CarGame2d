@@ -14,12 +14,27 @@ namespace CarGame2D
 
         protected void AddController(BasicController basicController)
         {
+            if (_basicControllers == null)
+            {
+
+                _basicControllers = new List<BasicController>();
+            }
             _basicControllers.Add(basicController);
         }
 
         protected void AddGameObject(GameObject gameObject)
         {
+            if (_gameObjects == null)
+            {
+                _gameObjects = new List<GameObject>();
+            }
             _gameObjects.Add(gameObject);
+        }
+        protected T LoadView<T>(ResourcePath viewPath) where T : Component
+        {
+            var objView = Object.Instantiate(ResourceLoader.LoadObject<T>(viewPath));
+            AddGameObject(objView.gameObject);
+            return objView;
         }
 
         public void Dispose()

@@ -46,7 +46,7 @@ namespace CarGame2D
         private void Move()
         {
             float movementDir = base._speed * Time.deltaTime * _accelerationRate;
-            Debug.Log(movementDir.ToString());
+            //Debug.Log(movementDir.ToString());
 
             if (movementDir > 0)
             {
