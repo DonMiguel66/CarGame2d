@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -10,13 +9,7 @@ namespace CarGame2D
         private readonly CarView _carView;
         public CarController(IItemsRepository _defaultItemConfigs)
         {
-            var defaultItems = _defaultItemConfigs.Items.Values.ToList();
             _carView = LoadView();
-            foreach (var carPart in defaultItems)
-            {
-                //Debug.Log(carPart.partPrefab.name);
-                _carView.SetCarPart(carPart.Info.CarPartType, carPart.Info.Prefab);
-            }            
         }
 
         private CarView LoadView()
@@ -39,6 +32,41 @@ namespace CarGame2D
         public CarView GetCarView()
         {
             return _carView;
+        }
+
+        public void SetCarPart(CarView carView, CarPartType partType, GameObject partGO, bool toSet)
+        {
+            switch (partType)
+            {
+                case CarPartType.Body:
+                    Object.Destroy(carView.Body);
+                    if (toSet)
+                        carView.Body = InitCarPart(carView.BodyPosition, partGO);
+                    break;
+                case CarPartType.Wheel:
+                    Object.Destroy(carView.ForwardWheel);
+                    Object.Destroy(carView.BackWheel);
+                    if (toSet)
+                    {
+                        carView.BackWheel = InitCarPart(carView.BackWheelPosition, partGO);
+                        carView.ForwardWheel = InitCarPart(carView.ForwardWheelPosition, partGO);
+                    }
+                    break;
+                case CarPartType.Accelerator:
+                    Object.Destroy(carView.Accelerator);
+                    if (toSet)
+                        carView.Accelerator = InitCarPart(carView.AcceleratorPosition, partGO);
+                    break;
+            }
+
+        }
+
+        private GameObject InitCarPart(Transform partPosition, GameObject partPrefab)
+        {
+            var carView = Object.Instantiate(partPrefab, partPosition, true);
+            carView.transform.position = partPosition.position;
+            return carView;
+
         }
     }
 }

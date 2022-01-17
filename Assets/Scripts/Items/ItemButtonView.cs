@@ -10,7 +10,7 @@ namespace CarGame2D
         [SerializeField] private Text _title;
         [SerializeField] private Button _button;
         private IItem _item;
-        private bool _isInUse = false;
+        private bool _isInUse;
 
         private void OnEnable()
         {
@@ -24,11 +24,6 @@ namespace CarGame2D
 
         private void ButtonClicked()
         {
-            if (_item == null)
-            {
-                throw new ArgumentNullException(nameof(_item));
-            }
-
             _isInUse = !_isInUse;
             UseRequested.Invoke(this, (_item, _isInUse));
         }

@@ -4,11 +4,10 @@ namespace CarGame2D
 {
     public class InventoryModel : IInventoryModel
     {
-        private static readonly List<IItem> _emptyCollection = new List<IItem>();
         private readonly List<IItem> _items = new List<IItem>();
         public IReadOnlyList<IItem> GetEquippedItems()
         {
-            return _items ?? _emptyCollection;
+            return _items;
         }
 
         //Изменить проверку состояния, если будут категории предметов

@@ -19,7 +19,6 @@ namespace CarGame2D
         private MainMenuController _mainMenuController;
         private GameController _gameController;
         private InventoryController _inventoryController;
-        private CarController _carController;
 
         private readonly Transform _placeForUi;
         private readonly ProfilePlayerModel _profilePlayer;
@@ -44,10 +43,10 @@ namespace CarGame2D
                     _gameController?.Dispose();
                     break;
                 case GameState.Game:
-                    var defaultitemsInventoryRepository = new ItemsRepository(_defaultItemConfigs);
-                    AddController(defaultitemsInventoryRepository);
+                    var defaultEquippedItemRepository = new ItemsRepository(_defaultItemConfigs);
+                    AddController(defaultEquippedItemRepository);
 
-                    var carController = new CarController(defaultitemsInventoryRepository);
+                    var carController = new CarController(defaultEquippedItemRepository);
                     AddController(carController);
 
                     var inventoryModel = new InventoryModel();
@@ -57,9 +56,7 @@ namespace CarGame2D
                     var upgradeItemsRepository = new UpgradeHandlerRepository(_upgradeItemsCfg);
                     AddController(upgradeItemsRepository);
 
-                    var inventoryViewPath = new ResourcePath { PathResources = "Prefabs/InventoryView" };
-                    var inventoryView = Object.Instantiate(ResourceLoader.LoadObject<InventoryView>(inventoryViewPath), _placeForUi, false);
-                    _inventoryController = new InventoryController(inventoryModel, itemsInventoryRepository, upgradeItemsRepository, _profilePlayer, carController,inventoryView.PlaceFotUI);
+                    _inventoryController = new InventoryController(inventoryModel, defaultEquippedItemRepository, itemsInventoryRepository, upgradeItemsRepository, _profilePlayer, carController, _placeForUi);
                     AddController(_inventoryController);
                     _inventoryController.SnowInventory();
 

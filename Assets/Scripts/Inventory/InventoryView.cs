@@ -6,21 +6,18 @@ namespace CarGame2D
 {
     public class InventoryView : MonoBehaviour, IInventoryView
     {
-        //Возможно, изменить вью под монобех с выводом информации(поля, свойства из контроллера) через канвас (визуал) и т.д.
         public event EventHandler<IItem> Selected;
         public event EventHandler<IItem> Deselected;
         [SerializeField]
         private Transform _placeForUI;
         public Transform PlaceFotUI => _placeForUI;
 
-        private List<IItem> _itemInfoCollection;
         private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/ItemView" };
         private List<ItemButtonView> _itemsView = new List<ItemButtonView>();
 
         public void Display(List<IItem> itemInfoCollection)
         {
-            _itemInfoCollection = itemInfoCollection;
-            foreach (var item in _itemInfoCollection)
+            foreach (var item in itemInfoCollection)
             {
                 var view = Instantiate(ResourceLoader.LoadObject<ItemButtonView>(_viewPath), _placeForUI, false);
                 view.Init(item);
@@ -47,6 +44,14 @@ namespace CarGame2D
         protected virtual void OnDeselected(IItem e)
         {
             Deselected?.Invoke(this, e);
+        }
+
+        public void OnDestroy()
+        {
+            foreach (var view in _itemsView)
+            {
+                Destroy(view);
+            }
         }
     }
 }
