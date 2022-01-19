@@ -7,7 +7,7 @@ namespace CarGame2D
     {
         private readonly ResourcePath _carPath = new ResourcePath { PathResources = "Prefabs/Car" };
         private readonly CarView _carView;
-        public CarController(IItemsRepository _defaultItemConfigs)
+        public CarController()
         {
             _carView = LoadView();
         }

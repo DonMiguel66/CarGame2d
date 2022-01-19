@@ -2,9 +2,8 @@
 
 namespace CarGame2D
 {
-    public class UpgradeHandlerRepository : BasicController
+    public class UpgradeHandlerRepository : BasicController , IRepository<int, IUpgradeCarHandler>
     {
-        public IReadOnlyDictionary<int, IUpgradeCarHandler> UpgradeItems => _upgradeItemsMapById;
         private Dictionary<int, IUpgradeCarHandler> _upgradeItemsMapById = new Dictionary<int, IUpgradeCarHandler>();
 
         public UpgradeHandlerRepository(List<UpgradeItemConfig> upgradeItemConfigs)
@@ -40,6 +39,9 @@ namespace CarGame2D
                     return StubUpgradeCarHandler.Default;
             }
         }
+
+        public IReadOnlyDictionary<int, IUpgradeCarHandler> Collection => _upgradeItemsMapById;
+
     }
 }
 

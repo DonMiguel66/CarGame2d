@@ -4,15 +4,15 @@ namespace CarGame2D
     {
         public CarModel CurrentCar { get; }
         public SubscribeProperty<GameState> CurrentState { get; }
-        public IAnalyticsTools AnalyticsTools { get; }
+        public UnityAnaliticsTools AnalyticsTools { get; }
 
         public IAdsShower AdsShower { get; }
 
-        public ProfilePlayerModel(float speed, UnityAdsTools _unityAdsTools)
+        public ProfilePlayerModel(float speed, UnityAdsTools _unityAdsTools, UnityAnaliticsTools analyticsTools)
         {
             CurrentState = new SubscribeProperty<GameState>();
             CurrentCar = new CarModel(speed);
-            AnalyticsTools = new UnityAnaliticsTools();
+            AnalyticsTools = analyticsTools;
             AdsShower = _unityAdsTools;
         }
 
