@@ -5,26 +5,30 @@ namespace CarGame2D
 {
     public class MainController : BasicController
     {
-        public MainController(Transform placeForUi, ProfilePlayerModel profilePlayer, List<ItemConfig> itemsCfg, List<UpgradeItemConfig> upgradedItemsCfg, List<ItemConfig> defaultItemsCfg)
+        public MainController(Transform placeForUi, ProfilePlayerModel profilePlayer, List<CarPartConfig> itemsCfg, List<UpgradeItemConfig> upgradedItemsCfg, List<CarPartConfig> defaultItemsCfg, List<AbilityItemConfig> abilityItemsConfig)
         {
             _profilePlayer = profilePlayer;
-            _placeForUi = placeForUi;
-            _itemConfigs = itemsCfg;
-            _defaultItemConfigs = defaultItemsCfg;
+            _placeForUI = placeForUi;
+            _carItemsConfigs = itemsCfg;
+            _defaultCarItemsConfigs = defaultItemsCfg;
             _upgradeItemsCfg = upgradedItemsCfg;
+            _abilityItemConfigs = abilityItemsConfig;
             OnChangeGameState(_profilePlayer.CurrentState.Value);
             profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
         }
 
         private MainMenuController _mainMenuController;
         private GameController _gameController;
+        private InGameUIController _inGameUIController;
         private InventoryController _inventoryController;
+        private AbilityController _abilityController;
 
-        private readonly Transform _placeForUi;
+        private readonly Transform _placeForUI;
         private readonly ProfilePlayerModel _profilePlayer;
-        private readonly List<ItemConfig> _itemConfigs;
+        private readonly List<CarPartConfig> _carItemsConfigs;
         private readonly List<UpgradeItemConfig> _upgradeItemsCfg;
-        private readonly List<ItemConfig> _defaultItemConfigs;
+        private readonly List<CarPartConfig> _defaultCarItemsConfigs;
+        private readonly List<AbilityItemConfig> _abilityItemConfigs;
 
         protected override void OnDispose()
         {
@@ -39,26 +43,35 @@ namespace CarGame2D
             switch (state)
             {
                 case GameState.Start:
-                    _mainMenuController = new MainMenuController(_placeForUi, _profilePlayer);
+                    _mainMenuController = new MainMenuController(_placeForUI, _profilePlayer);
                     _gameController?.Dispose();
                     break;
                 case GameState.Game:
-                    var defaultEquippedItemRepository = new ItemsRepository(_defaultItemConfigs);
-                    AddController(defaultEquippedItemRepository);
+                    var defaultEquippedCarItemsRepository = new CarPartsRepository(_defaultCarItemsConfigs);
+                    AddController(defaultEquippedCarItemsRepository);
 
-                    var carController = new CarController(defaultEquippedItemRepository);
+                    var carController = new CarController();
                     AddController(carController);
 
                     var inventoryModel = new InventoryModel();
-                    var itemsInventoryRepository = new ItemsRepository(_itemConfigs);
-                    AddController(itemsInventoryRepository);
+
+                    var carItemsInventoryRepository = new CarPartsRepository(_carItemsConfigs);
+                    AddController(carItemsInventoryRepository);
 
                     var upgradeItemsRepository = new UpgradeHandlerRepository(_upgradeItemsCfg);
                     AddController(upgradeItemsRepository);
 
-                    _inventoryController = new InventoryController(inventoryModel, defaultEquippedItemRepository, itemsInventoryRepository, upgradeItemsRepository, _profilePlayer, carController, _placeForUi);
+                    var abilityItemConfigs = new AbilityRepository(_abilityItemConfigs);
+                    AddController(abilityItemConfigs);
+
+                    _inventoryController = new InventoryController(inventoryModel, defaultEquippedCarItemsRepository, carItemsInventoryRepository, upgradeItemsRepository, carController, _placeForUI);
                     AddController(_inventoryController);
-                    _inventoryController.SnowInventory();
+
+                    _abilityController = new AbilityController(abilityItemConfigs, _placeForUI);
+                    AddController(_abilityController);
+
+                    _inGameUIController = new InGameUIController(_placeForUI, _inventoryController, _abilityController);
+                    AddController(_inGameUIController);
 
                     _gameController = new GameController(_profilePlayer);
                     _mainMenuController?.Dispose();

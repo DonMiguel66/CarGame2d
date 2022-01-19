@@ -7,6 +7,6 @@ namespace CarGame2D
     {
         event EventHandler<IItem> Selected;
         event EventHandler<IItem> Deselected;
-        void Display(List<IItem> items);
+        void InitView(List<IItem> items);
     }
 }
