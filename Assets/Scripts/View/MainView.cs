@@ -17,6 +17,8 @@ namespace CarGame2D
         [SerializeField]
         private UnityAdsTools _unityAdsTools;
         [SerializeField]
+        private ItemConfig[] _itemsConfig;
+        [SerializeField]
         private CarPartConfig[] _defaultItemsConfig;
         [SerializeField]
         private CarPartConfig[] _inventoryItemsConfig;
@@ -31,7 +33,7 @@ namespace CarGame2D
         {
             var profilePlayer = new ProfilePlayerModel(15f, _unityAdsTools, analyticTools);
             profilePlayer.CurrentState.Value = GameState.Start;
-            _mainController = new MainController(_placeForUi, profilePlayer, _inventoryItemsConfig.ToList(), _upgradeItemsCfg.ToList(), _defaultItemsConfig.ToList(), _abilityItemsCfg.ToList());
+            _mainController = new MainController(_placeForUi, profilePlayer, _itemsConfig.ToList(), _inventoryItemsConfig.ToList(), _upgradeItemsCfg.ToList(), _defaultItemsConfig.ToList(), _abilityItemsCfg.ToList());
         }
 
         protected void OnDestroy()

@@ -3,7 +3,7 @@ using Object = UnityEngine.Object;
 
 namespace CarGame2D
 {
-    public class CarController : BasicController
+    public class CarController : BasicController, IAbilityActivator
     {
         private readonly ResourcePath _carPath = new ResourcePath { PathResources = "Prefabs/Car" };
         private readonly CarView _carView;

@@ -38,9 +38,9 @@ namespace CarGame2D
         private void Ability()
         {
             if (!_abilityController.AbilityStatus())
-                _abilityController.SnowInventory();
+                _abilityController.ShowAbilities();
             else
-                _abilityController.HideInventory();
+                _abilityController.HideAbilities();
         }
     }
 }

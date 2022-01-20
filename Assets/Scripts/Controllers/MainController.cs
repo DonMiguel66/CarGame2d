@@ -5,14 +5,15 @@ namespace CarGame2D
 {
     public class MainController : BasicController
     {
-        public MainController(Transform placeForUi, ProfilePlayerModel profilePlayer, List<CarPartConfig> itemsCfg, List<UpgradeItemConfig> upgradedItemsCfg, List<CarPartConfig> defaultItemsCfg, List<AbilityItemConfig> abilityItemsConfig)
+        public MainController(Transform placeForUi, ProfilePlayerModel profilePlayer, List<ItemConfig> itemConfigs, List<CarPartConfig> carPartsCfg, List<UpgradeItemConfig> upgradedItemsCfg, List<CarPartConfig> defaultCarPartsCfg, List<AbilityItemConfig> abilityItemsConfig)
         {
             _profilePlayer = profilePlayer;
             _placeForUI = placeForUi;
-            _carItemsConfigs = itemsCfg;
-            _defaultCarItemsConfigs = defaultItemsCfg;
+            _itemsConfigs = itemConfigs;
+            _carPartsConfigs = carPartsCfg;
+            _defaultCarPartsConfigs = defaultCarPartsCfg;
             _upgradeItemsCfg = upgradedItemsCfg;
-            _abilityItemConfigs = abilityItemsConfig;
+            _abilityItemsConfigs = abilityItemsConfig;
             OnChangeGameState(_profilePlayer.CurrentState.Value);
             profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
         }
@@ -25,10 +26,11 @@ namespace CarGame2D
 
         private readonly Transform _placeForUI;
         private readonly ProfilePlayerModel _profilePlayer;
-        private readonly List<CarPartConfig> _carItemsConfigs;
+        private readonly List<CarPartConfig> _carPartsConfigs;
+        private readonly List<CarPartConfig> _defaultCarPartsConfigs;
+        private readonly List<ItemConfig> _itemsConfigs;
+        private readonly List<AbilityItemConfig> _abilityItemsConfigs;
         private readonly List<UpgradeItemConfig> _upgradeItemsCfg;
-        private readonly List<CarPartConfig> _defaultCarItemsConfigs;
-        private readonly List<AbilityItemConfig> _abilityItemConfigs;
 
         protected override void OnDispose()
         {
@@ -47,27 +49,31 @@ namespace CarGame2D
                     _gameController?.Dispose();
                     break;
                 case GameState.Game:
-                    var defaultEquippedCarItemsRepository = new CarPartsRepository(_defaultCarItemsConfigs);
+                    var defaultEquippedCarItemsRepository = new CarPartsRepository(_defaultCarPartsConfigs);
                     AddController(defaultEquippedCarItemsRepository);
 
                     var carController = new CarController();
                     AddController(carController);
 
                     var inventoryModel = new InventoryModel();
+                    var abilityInventoryModel = new InventoryModel();
 
-                    var carItemsInventoryRepository = new CarPartsRepository(_carItemsConfigs);
+                    var carItemsInventoryRepository = new CarPartsRepository(_carPartsConfigs);
                     AddController(carItemsInventoryRepository);
 
                     var upgradeItemsRepository = new UpgradeHandlerRepository(_upgradeItemsCfg);
                     AddController(upgradeItemsRepository);
 
-                    var abilityItemConfigs = new AbilityRepository(_abilityItemConfigs);
-                    AddController(abilityItemConfigs);
+                    var itemsRepository = new ItemsRepository(_itemsConfigs);
+                    AddController(itemsRepository);
+
+                    var abilityItemsRepository = new AbilityRepository(_abilityItemsConfigs);
+                    AddController(abilityItemsRepository);
 
                     _inventoryController = new InventoryController(inventoryModel, defaultEquippedCarItemsRepository, carItemsInventoryRepository, upgradeItemsRepository, carController, _placeForUI);
                     AddController(_inventoryController);
 
-                    _abilityController = new AbilityController(abilityItemConfigs, _placeForUI);
+                    _abilityController = new AbilityController(itemsRepository, abilityInventoryModel, abilityItemsRepository, carController,_placeForUI);
                     AddController(_abilityController);
 
                     _inGameUIController = new InGameUIController(_placeForUI, _inventoryController, _abilityController);

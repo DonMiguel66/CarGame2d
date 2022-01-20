@@ -6,10 +6,10 @@ namespace CarGame2D
 {
     public class AbilityButtonView : MonoBehaviour, IView
     {
-        public event EventHandler<IAbility> UseRequested;
+        public event EventHandler<IItem> UseRequested;
         [SerializeField] private Text _title;
         [SerializeField] private Button _button;
-        private IAbility _item;
+        private IItem _item;
 
         private void OnEnable()
         {
@@ -21,10 +21,10 @@ namespace CarGame2D
             UseRequested.Invoke(this, _item);
         }
 
-        public void Init(IAbility item)
+        public void Init(IItem item)
         {
             _item = item ?? throw new ArgumentNullException(nameof(item));
-            _title.text = _item.Title;
+            _title.text = _item.Info.Title;
         }
         public void Hide()
         {

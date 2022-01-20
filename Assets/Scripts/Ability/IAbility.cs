@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace CarGame2D
 {
@@ -15,10 +16,16 @@ namespace CarGame2D
         void HideAbilities();
     }
 
+    public interface IAbilityActivator
+    {
+        GameObject GetViewObject();
+    }
+
+
     public interface IAbilityCollectionView :IView
     {
-        event EventHandler<IAbility> UseRequested;
-        void InitView(IReadOnlyList<IAbility> abilityItems);
+        event EventHandler<IItem> UseRequested;
+        void InitView(IReadOnlyList<IItem> abilityItems);
     }
 
 }
