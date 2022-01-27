@@ -6,7 +6,7 @@ namespace CarGame2D
 {
     public class MainMenuView : MonoBehaviour
     {
-        [SerializeField] private Button _buttonStart;
+        [SerializeField] private CustomButton _buttonStart;
 
         public void Init(UnityAction startGame)
         {

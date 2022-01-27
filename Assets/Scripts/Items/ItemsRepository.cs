@@ -2,11 +2,11 @@ using System.Collections.Generic;
 
 namespace CarGame2D
 {
-    public class ItemsRepository : BasicController, IItemsRepository
+    public class ItemsRepository : BasicController, IRepository<int, IItem>
     {
-        public IReadOnlyDictionary<int, IItem> Items => _itemsMapById;
+        public IReadOnlyDictionary<int, IItem> Collection => _itemsMapById;
 
-        private Dictionary<int, IItem> _itemsMapById = new Dictionary<int, IItem>();
+        private readonly Dictionary<int, IItem> _itemsMapById = new Dictionary<int, IItem>();
 
         public ItemsRepository(List<ItemConfig> itemConfigs)
         {
@@ -31,7 +31,7 @@ namespace CarGame2D
 
         private IItem CreateItem(ItemConfig config)
         {
-            var itemInfo = new ItemInfo { Title = config.Title, CarPartType = config.CarPartType, Prefab = config.Prefab };           
+            var itemInfo = new ItemInfo { Title = config.Title };           
             return new Item(config.Id, itemInfo);
         }
     }

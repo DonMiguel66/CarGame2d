@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3130634385701380256}
   - component: {fileID: 5398340283625741854}
   - component: {fileID: 6629910652529530908}
-  - component: {fileID: 315532611085353152}
+  - component: {fileID: 3982422619901086973}
   m_Layer: 5
   m_Name: buttonStart
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &315532611085353152
+--- !u!114 &3982422619901086973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4606198224720175488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 38be5452052629748832b4e60a056278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -120,6 +120,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  _animationButtonType: 0
+  _duration: 0.5
+  _strength: 30
+  _pauseTime: 0.1
+  _punchScale: {x: 0.7, y: 0.7, z: 0}
+  _punchDuration: 0.811
+  _punchVibrato: 4
+  _punchElasticity: 1
 --- !u!1 &6015533690559672758
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d60df16a902b7e45bb7e8dde9e15baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonStart: {fileID: 315532611085353152}
+  _buttonStart: {fileID: 3982422619901086973}
 --- !u!1 &6888920513732523659
 GameObject:
   m_ObjectHideFlags: 0

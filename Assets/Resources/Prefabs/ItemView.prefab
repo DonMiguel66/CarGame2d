@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7260038674515676696}
   - component: {fileID: 7313485097290507229}
   - component: {fileID: 7785098495810879554}
-  - component: {fileID: 2372746714563570843}
   - component: {fileID: 3962999490594684430}
+  - component: {fileID: 6897797143935636318}
   m_Layer: 5
   m_Name: ItemView
   m_TagString: Untagged
@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 160}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7313485097290507229
 CanvasRenderer:
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2372746714563570843
+--- !u!114 &3962999490594684430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,7 +87,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 5086028297650339840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e892a59f98c51649828e10b03500c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _title: {fileID: 1383547400255164308}
+  _button: {fileID: 6897797143935636318}
+--- !u!114 &6897797143935636318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5086028297650339840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38be5452052629748832b4e60a056278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -122,20 +136,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3962999490594684430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5086028297650339840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e892a59f98c51649828e10b03500c2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _title: {fileID: 1383547400255164308}
-  _button: {fileID: 2372746714563570843}
+  _animationButtonType: 1
+  _duration: 0.5
+  _strength: 30
+  _pauseTime: 0.1
+  _punchScale: {x: 0.55, y: 0.55, z: 0}
+  _punchDuration: 0.4
+  _punchVibrato: 1
+  _punchElasticity: 1
 --- !u!1 &7293611282267724121
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +211,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 36
+    m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 3
