@@ -7,12 +7,10 @@ namespace CarGame2D
     public class BombAbility : IAbility
     {
         private readonly AbilityItemConfig _abilityCfg;
-        public string Title { get; set; }
 
         public BombAbility(AbilityItemConfig config)
         {
             _abilityCfg = config;
-            Title = _abilityCfg.Title;            
         }
 
         public void Apply()

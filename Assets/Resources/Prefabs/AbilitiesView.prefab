@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 7709948746442523163}
   - component: {fileID: 8498483152117136751}
   - component: {fileID: 162467284157200595}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 1971501247447697271}
   - component: {fileID: 6408189601805847333}
   - component: {fileID: 8375165011494173434}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: AbilitiesView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &8375165011494173434
 MonoBehaviour:

@@ -6,7 +6,7 @@ namespace CarGame2D
 {
     public class AbilityCollectionView : MonoBehaviour, IAbilityCollectionView
     {
-        public event EventHandler<IItem> UseRequested;
+        public event Action<IItem> UseRequested;
 
         [SerializeField]
         private Transform _placeForUI;
@@ -19,7 +19,7 @@ namespace CarGame2D
         private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/AbilityView" };
         private void UseAbility(IItem item)
         {
-            UseRequested.Invoke(this, item);
+            UseRequested?.Invoke(item);
         }    
 
         public void InitView(IReadOnlyList<IItem> abilityItems)

@@ -6,7 +6,6 @@ namespace CarGame2D
 {
     public interface IAbility  
     {
-        string Title { get; }
         void Apply();
     }
 
@@ -24,7 +23,7 @@ namespace CarGame2D
 
     public interface IAbilityCollectionView :IView
     {
-        event EventHandler<IItem> UseRequested;
+        event Action<IItem> UseRequested;
         void InitView(IReadOnlyList<IItem> abilityItems);
     }
 

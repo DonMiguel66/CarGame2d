@@ -316,10 +316,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8ddcf860552624c98e348b88abc1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonInventory: {fileID: 0}
-  _buttonAbility: {fileID: 0}
   _placeForUi: {fileID: 327503526}
   _unityAdsTools: {fileID: 1202972330}
+  _itemsConfig:
+  - {fileID: 11400000, guid: cfa7acd38673cea4a8ee102e7dd52673, type: 2}
   _defaultItemsConfig:
   - {fileID: 11400000, guid: 9f726e9b5b97d6147956e50466a926c4, type: 2}
   - {fileID: 11400000, guid: 33b61059effa1fe49bc8318115118468, type: 2}
@@ -391,7 +391,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1733023119
 RectTransform:

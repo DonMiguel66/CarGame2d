@@ -8,7 +8,6 @@ namespace CarGame2D
         private readonly AbilityRepository _abilityRepository;
         private readonly AbilityCollectionView _abilityCollectionView;
         private readonly ItemsRepository _itemsRepository;
-        private readonly IAbilityActivator _carController;
         private readonly InventoryModel _abilityInventoryModel;
 
         private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/AbilitiesView" };
@@ -16,7 +15,6 @@ namespace CarGame2D
         public AbilityController(ItemsRepository itemsRepository, InventoryModel abilityInventoryModel, AbilityRepository abilityRepository, IAbilityActivator abilityActivator,Transform placeForUI)
         {
             _abilityRepository = abilityRepository;
-            _carController = abilityActivator;
             _itemsRepository = itemsRepository;
             _abilityInventoryModel = abilityInventoryModel;
             _abilityCollectionView = Object.Instantiate(ResourceLoader.LoadObject<AbilityCollectionView>(_viewPath),
@@ -27,7 +25,7 @@ namespace CarGame2D
             _abilityCollectionView.UseRequested += OnAbilityUseRequested;
 
         }
-        private void OnAbilityUseRequested(object sender, IItem e)
+        private void OnAbilityUseRequested(IItem e)
         {
             if (_abilityRepository.Collection.TryGetValue(e.Id, out var ability))
                 ability.Apply();
@@ -52,7 +50,7 @@ namespace CarGame2D
         {
             foreach (var ability in itemsRepository.Collection)
             {
-                Debug.Log(ability);
+                Debug.Log(ability.Value.Info.Title);
                 _abilityInventoryModel.EquipItem(ability.Value);
             }
         }

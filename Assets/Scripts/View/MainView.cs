@@ -8,9 +8,6 @@ namespace CarGame2D
     {
         private MainController _mainController;
         private UnityAnaliticsTools analyticTools;
-        [SerializeField] private Button _buttonInventory;
-        [SerializeField] private Button _buttonAbility;
-
 
         [SerializeField]
         private Transform _placeForUi;

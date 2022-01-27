@@ -18,7 +18,7 @@ namespace CarGame2D
 
         private void ButtonClicked()
         {
-            UseRequested.Invoke(this, _item);
+            UseRequested?.Invoke(this, _item);
         }
 
         public void Init(IItem item)
@@ -28,12 +28,10 @@ namespace CarGame2D
         }
         public void Hide()
         {
-            throw new System.NotImplementedException();
         }
 
         public void Show()
         {
-            throw new System.NotImplementedException();
         }
         private void OnDestroy()
         {
