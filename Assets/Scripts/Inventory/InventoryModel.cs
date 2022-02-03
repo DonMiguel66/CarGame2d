@@ -14,8 +14,8 @@ namespace CarGame2D
         public void EquipItem(IItem item)
         {
             if (_items.Contains(item))
-                return;
-            _items.Add(item);
+                return;           
+            _items.Add(item);            
         }
 
         

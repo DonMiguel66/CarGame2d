@@ -316,19 +316,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8ddcf860552624c98e348b88abc1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rewardView: {fileID: 2616233851476349855, guid: 66b57ae55e2fa6d40a561b8aa4b57168, type: 3}
+  _currencyView: {fileID: 889397353715884758, guid: 1bcc41eb1e7d5c24e8ea95b886df725c, type: 3}
+  _fightWindowView: {fileID: 5594161820599220883, guid: 58fa0acb3f291724b8f93f68f56cd6a5, type: 3}
+  _startFightView: {fileID: 4619746053714447055, guid: 0484a9a1966e8274788540d6a4242db4, type: 3}
   _placeForUi: {fileID: 327503526}
   _unityAdsTools: {fileID: 1202972330}
+  _itemsConfig:
+  - {fileID: 11400000, guid: cfa7acd38673cea4a8ee102e7dd52673, type: 2}
   _defaultItemsConfig:
-  - {fileID: 11400000, guid: 18a8ef600b357bb4e862365b0446ef00, type: 2}
-  - {fileID: 11400000, guid: d68d81f2f19845d4485c95b6df1fcda4, type: 2}
+  - {fileID: 11400000, guid: 9f726e9b5b97d6147956e50466a926c4, type: 2}
+  - {fileID: 11400000, guid: 33b61059effa1fe49bc8318115118468, type: 2}
   _inventoryItemsConfig:
-  - {fileID: 11400000, guid: d68d81f2f19845d4485c95b6df1fcda4, type: 2}
-  - {fileID: 11400000, guid: 46ee0247db6ba0b469b0580238c4b7c0, type: 2}
-  - {fileID: 11400000, guid: 3ab8e4536f3bfe64bb3bd948bb518015, type: 2}
+  - {fileID: 11400000, guid: 33b61059effa1fe49bc8318115118468, type: 2}
+  - {fileID: 11400000, guid: e6d8e830c8616894197d88b75e6ef261, type: 2}
+  - {fileID: 11400000, guid: d9a90c1ca3c25284d8220fe76daa47f0, type: 2}
   _upgradeItemsCfg:
   - {fileID: 11400000, guid: a09b2af24acf6064abd0f12789d29afe, type: 2}
   - {fileID: 11400000, guid: 212dfe368f25bbe4c825d436c0687806, type: 2}
-  _carPartsConfig: {fileID: 11400000, guid: 9c55ea872cbdfd845ad5de0248259a47, type: 2}
+  _abilityItemsCfg:
+  - {fileID: 11400000, guid: 54e19a95e43d04340a5d988ed1c2f1f6, type: 2}
 --- !u!114 &1733023116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,12 +365,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -388,7 +395,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1733023119
 RectTransform:

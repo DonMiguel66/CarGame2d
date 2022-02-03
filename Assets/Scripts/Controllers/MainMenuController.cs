@@ -12,8 +12,10 @@ namespace CarGame2D
         {
             _profilePlayer = profilePlayer;
             _mainMenuView = LoadView(placeForUI);
-            _mainMenuView.Init(StartGame);
+            _mainMenuView.Init(StartGame, DoReward);
         }
+
+        
 
         private MainMenuView LoadView(Transform placeForUI)
         {
@@ -29,8 +31,14 @@ namespace CarGame2D
         private void StartGame()
         {
             _profilePlayer.CurrentState.Value = GameState.Game;
-            _profilePlayer.AnalyticsTools.SendMessage("start_game", ("time", Time.realtimeSinceStartup));
+            //_profilePlayer.AnalyticsTools.SendMessage("start_game", ("time", Time.realtimeSinceStartup));
             _profilePlayer.AdsShower.ShowBanner();
         }
+
+        private void DoReward()
+        {
+            _profilePlayer.CurrentState.Value = GameState.Reward;
+        }
+
     }
 }

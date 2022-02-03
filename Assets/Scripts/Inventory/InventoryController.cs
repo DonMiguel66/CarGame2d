@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,71 +8,68 @@ namespace CarGame2D
 {
     public class InventoryController : BasicController, IInventoryController
     {
-        private readonly ProfilePlayerModel _playerModel;
         private readonly CarView _carView;
         private readonly CarController _carController;
         private readonly IInventoryModel _inventoryModel;
         private readonly InventoryView _inventoryView;
-        private readonly IItemsRepository _itemsRepository;
-        private readonly IItemsRepository _defaultEquippedItemRepository;
+        private readonly CarPartsRepository _inventoryCarItemsRepository;
+        private readonly CarPartsRepository _defaultCarItemsRepository;
         private readonly UpgradeHandlerRepository _upgradeHandlerRepository;
-        //private Action _hideAction;
+
         private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/InventoryView" };
 
-        public InventoryController(IInventoryModel inventoryModel, IItemsRepository defaultEquippedItemRepository, IItemsRepository itemsRepository, UpgradeHandlerRepository upgradeItemsRepository, ProfilePlayerModel playerModel, CarController carController,Transform inventoryUI)
+
+        public InventoryController(IInventoryModel inventoryModel, CarPartsRepository defaultCarItemsRepository, CarPartsRepository inventoryCarItemsRepository, UpgradeHandlerRepository upgradeItemsRepository, CarController carController,Transform placeForUI)
         {
             _inventoryModel = inventoryModel;
-            _itemsRepository = itemsRepository;
-            _defaultEquippedItemRepository = defaultEquippedItemRepository;
+            _inventoryCarItemsRepository = inventoryCarItemsRepository;
+            _defaultCarItemsRepository = defaultCarItemsRepository;
             _upgradeHandlerRepository = upgradeItemsRepository;
-            _playerModel = playerModel;
             _carController = carController;
             _carView = carController.GetCarView();
             EquipDefaultItems();
 
             _inventoryView = Object.Instantiate(ResourceLoader.LoadObject<InventoryView>(_viewPath),
-                                                inventoryUI,
+                                                placeForUI,
                                                 false);
             AddGameObject(_inventoryView.gameObject);
+
+            var equippedItems = _inventoryCarItemsRepository.Collection.Values.ToList();
+            _inventoryView.InitView(equippedItems);
 
             _inventoryView.Selected += OnItemSelected;
             _inventoryView.Deselected += OnItemDeselected;
         }
-        public void SnowInventory()
-        {
-            var equippedItems = _itemsRepository.Items.Values.ToList();
-            _inventoryView.Display(equippedItems);
-            ShowItems();
-        }
-
-        //public void SnowInventory(Action action)
-        //{
-        //    //_hideAction = action;
-
-        //    var equippedItems = _itemsRepository.Items.Values.ToList();
-        //    _inventoryView.Display(equippedItems);
-        //}
         public void HideInventory()
         {
-            //_hideAction?.Invoke();
-        }        
+            _inventoryView.Active = false;
+            _inventoryView.Hide();
+            Debug.Log(_inventoryView.Active);
+        }
+        public void SnowInventory()
+        {
+            _inventoryView.Active = true;
+            _inventoryView.Show();
+            ShowItems();
+            Debug.Log(_inventoryView.Active);
+        }
         private void OnItemSelected(object sender, IItem item)
         {            
             _inventoryModel.EquipItem(item);
             _carController.SetCarPart(_carView, item.Info.CarPartType, item.Info.Prefab, true);
-            Debug.Log($"{item.Info.Title} equipped.");
+            //Debug.Log($"{item.Info.Title} equipped.");
             ShowItems(); //дл€ дебага
         }
         private void OnItemDeselected(object sender, IItem item)
         {
             _inventoryModel.UnequipItem(item);
             _carController.SetCarPart(_carView, item.Info.CarPartType, item.Info.Prefab, false);
-            Debug.Log($"{item.Info.Title} unequipped.");
+            //Debug.Log($"{item.Info.Title} unequipped.");
             ShowItems(); //дл€ дебага
         }
         public void EquipDefaultItems()
         {
-            var defaultItems = _defaultEquippedItemRepository.Items.Values.ToList();
+            var defaultItems = _defaultCarItemsRepository.Collection.Values.ToList();
             foreach (var carPart in defaultItems)
             {
                 _inventoryModel.EquipItem(carPart);
@@ -83,6 +81,12 @@ namespace CarGame2D
         {
             return _inventoryModel.GetEquippedItems();
         }        
+
+        public bool InventoryStatus()
+        {
+            return _inventoryView.Active;
+        }
+
         //ћетод дл€ дебага, потом удалю
         private void ShowItems()
         {
@@ -91,17 +95,7 @@ namespace CarGame2D
                 Debug.Log(item.Id);
                 Debug.Log(item.Info.Title);
                 Debug.Log(item.Info.CarPartType);
-            }
-        }
-
-        private void UpgradeCarWithEquippedItems(IUpgradableCar upgradableCar, IReadOnlyList<IItem> equippedItems, IReadOnlyDictionary<int, IUpgradeCarHandler> upgradeHandlers)
-        {
-            foreach (var equippedItem in equippedItems)
-            {
-                if (upgradeHandlers.TryGetValue(equippedItem.Id, out var handler))
-                {
-                    handler.Upgrade(upgradableCar);
-                }
+                Debug.Log("======================");
             }
         }
 
