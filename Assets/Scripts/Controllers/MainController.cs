@@ -5,10 +5,23 @@ namespace CarGame2D
 {
     public class MainController : BasicController
     {
-        public MainController(Transform placeForUi, ProfilePlayerModel profilePlayer, List<ItemConfig> itemConfigs, List<CarPartConfig> carPartsCfg, List<UpgradeItemConfig> upgradedItemsCfg, List<CarPartConfig> defaultCarPartsCfg, List<AbilityItemConfig> abilityItemsConfig)
+        private readonly RewardView _rewardView;
+        private readonly CurrencyView _currencyView;
+        private readonly FightWindowView _fightWindowView;
+        private readonly StartFightView _startFightView;
+
+        public MainController(Transform placeForUi, ProfilePlayerModel profilePlayer, RewardView rewardView, CurrencyView currencyView, FightWindowView fightWindowView, StartFightView startFightView, 
+            List<ItemConfig> itemConfigs, List<CarPartConfig> carPartsCfg, List<UpgradeItemConfig> upgradedItemsCfg, List<CarPartConfig> defaultCarPartsCfg, List<AbilityItemConfig> abilityItemsConfig)
+
         {
             _profilePlayer = profilePlayer;
             _placeForUI = placeForUi;
+
+            _rewardView = rewardView;
+            _currencyView = currencyView;
+            _fightWindowView = fightWindowView;
+            _startFightView = startFightView;
+
             _itemsConfigs = itemConfigs;
             _carPartsConfigs = carPartsCfg;
             _defaultCarPartsConfigs = defaultCarPartsCfg;
@@ -20,9 +33,13 @@ namespace CarGame2D
 
         private MainMenuController _mainMenuController;
         private GameController _gameController;
+        private CarController _carController;
         private InGameUIController _inGameUIController;
         private InventoryController _inventoryController;
         private AbilityController _abilityController;
+        private RewardController _rewardController;
+        private FightWindowController _fightWindowController;
+        private StartFightController _startFightController;
 
         private readonly Transform _placeForUI;
         private readonly ProfilePlayerModel _profilePlayer;
@@ -34,8 +51,8 @@ namespace CarGame2D
 
         protected override void OnDispose()
         {
-            _mainMenuController?.Dispose();
-            _gameController?.Dispose();
+            DisposeAllControllers();
+
             _profilePlayer.CurrentState.UnsubscribeOnChange(OnChangeGameState);
             base.OnDispose();
         }
@@ -46,14 +63,19 @@ namespace CarGame2D
             {
                 case GameState.Start:
                     _mainMenuController = new MainMenuController(_placeForUI, _profilePlayer);
+
                     _gameController?.Dispose();
+                    _rewardController?.Dispose();
                     break;
                 case GameState.Game:
+                    _gameController = new GameController(_profilePlayer);
+                    _startFightController = new StartFightController(_placeForUI, _profilePlayer, _startFightView);
+
                     var defaultEquippedCarItemsRepository = new CarPartsRepository(_defaultCarPartsConfigs);
                     AddController(defaultEquippedCarItemsRepository);
 
-                    var carController = new CarController();
-                    AddController(carController);
+                    _carController = new CarController();
+                    AddController(_carController);
 
                     var inventoryModel = new InventoryModel();
                     var abilityInventoryModel = new InventoryModel();
@@ -70,23 +92,50 @@ namespace CarGame2D
                     var abilityItemsRepository = new AbilityRepository(_abilityItemsConfigs);
                     AddController(abilityItemsRepository);
 
-                    _inventoryController = new InventoryController(inventoryModel, defaultEquippedCarItemsRepository, carItemsInventoryRepository, upgradeItemsRepository, carController, _placeForUI);
+                    _inventoryController = new InventoryController(inventoryModel, defaultEquippedCarItemsRepository, carItemsInventoryRepository, upgradeItemsRepository, _carController, _placeForUI);
                     AddController(_inventoryController);
 
-                    _abilityController = new AbilityController(itemsRepository, abilityInventoryModel, abilityItemsRepository, carController,_placeForUI);
+                    _abilityController = new AbilityController(itemsRepository, abilityInventoryModel, abilityItemsRepository, _carController, _placeForUI);
                     AddController(_abilityController);
 
                     _inGameUIController = new InGameUIController(_placeForUI, _inventoryController, _abilityController);
                     AddController(_inGameUIController);
 
-                    _gameController = new GameController(_profilePlayer);
                     _mainMenuController?.Dispose();
+                    _fightWindowController?.Dispose();
+
+                    break;
+                case GameState.Reward:
+                    _rewardController = new RewardController(_placeForUI, _profilePlayer, _rewardView, _currencyView);
+                    _rewardController.RefreshView();
+
+                    _mainMenuController?.Dispose();
+
+                    break;
+                case GameState.Fight:
+                    _fightWindowController = new FightWindowController(_placeForUI, _profilePlayer, _fightWindowView);
+                    _fightWindowController.RefreshView();
+
+                    _carController?.Dispose();
+                    _inGameUIController?.Dispose();
+                    _gameController?.Dispose();
+                    _startFightController?.Dispose();
                     break;
                 default:
-                    _mainMenuController?.Dispose();
-                    _gameController?.Dispose();
+                    DisposeAllControllers();
                     break;
             }
+        }
+
+        private void DisposeAllControllers()
+        {
+            _mainMenuController?.Dispose();
+            _gameController?.Dispose();
+            _carController?.Dispose();
+            _fightWindowController?.Dispose();
+            _rewardController?.Dispose();
+            _startFightController?.Dispose(); 
+            _inGameUIController?.Dispose();
         }
     }
 }

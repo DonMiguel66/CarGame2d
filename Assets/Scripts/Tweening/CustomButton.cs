@@ -53,15 +53,16 @@ namespace CarGame2D
 
         private void StartAnimation()
         {
+            if (_inAnimation)
+                return;
+
             switch(_animationButtonType)
             {
                 case AnimationButtonType.Bouncing:
-                    if(!_inAnimation)
-                        DoBouncing(_rectTransform);
+                    DoBouncing(_rectTransform);
                     break;
                 case AnimationButtonType.Shaking:
-                    if (!_inAnimation)
-                        DoShaking(_rectTransform);
+                    DoShaking(_rectTransform);
                     break;
             }
         }

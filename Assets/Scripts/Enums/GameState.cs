@@ -4,6 +4,8 @@ namespace CarGame2D
     {
         None,
         Start,
-        Game,
+        Reward,
+        Fight,
+        Game
     }
 }

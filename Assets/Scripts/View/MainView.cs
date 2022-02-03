@@ -10,6 +10,15 @@ namespace CarGame2D
         private UnityAnaliticsTools analyticTools;
 
         [SerializeField]
+        private RewardView _rewardView;
+        [SerializeField]
+        private CurrencyView _currencyView;
+        [SerializeField]
+        private FightWindowView _fightWindowView;
+        [SerializeField]
+        private StartFightView _startFightView;
+
+        [SerializeField]
         private Transform _placeForUi;
         [SerializeField]
         private UnityAdsTools _unityAdsTools;
@@ -30,7 +39,8 @@ namespace CarGame2D
         {
             var profilePlayer = new ProfilePlayerModel(15f, _unityAdsTools, analyticTools);
             profilePlayer.CurrentState.Value = GameState.Start;
-            _mainController = new MainController(_placeForUi, profilePlayer, _itemsConfig.ToList(), _inventoryItemsConfig.ToList(), _upgradeItemsCfg.ToList(), _defaultItemsConfig.ToList(), _abilityItemsCfg.ToList());
+            _mainController = new MainController(_placeForUi, profilePlayer, _rewardView, _currencyView, _fightWindowView, _startFightView,
+                _itemsConfig.ToList(), _inventoryItemsConfig.ToList(), _upgradeItemsCfg.ToList(), _defaultItemsConfig.ToList(), _abilityItemsCfg.ToList());
         }
 
         protected void OnDestroy()
