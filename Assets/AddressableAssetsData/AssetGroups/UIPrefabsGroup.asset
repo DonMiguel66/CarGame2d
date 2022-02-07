@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UIPrefabsGroup
+  m_EditorClassIdentifier: 
+  m_GroupName: UIPrefabsGroup
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 045141ad183383543b446da65b002595
+  m_SerializeEntries:
+  - m_GUID: f5e8acb4ccf4c704e95939f15d803d4a
+    m_Address: ItemButtonView
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefab
+    m_MainAsset: {fileID: 5086028297650339840, guid: f5e8acb4ccf4c704e95939f15d803d4a, type: 3}
+    m_TargetAsset: {fileID: 5086028297650339840, guid: f5e8acb4ccf4c704e95939f15d803d4a, type: 3}
+  - m_GUID: f73b5ceaabd6ca94b894ab0f3d4f7577
+    m_Address: MainMenu
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefab
+    m_MainAsset: {fileID: 6015533690559672758, guid: f73b5ceaabd6ca94b894ab0f3d4f7577, type: 3}
+    m_TargetAsset: {fileID: 6015533690559672758, guid: f73b5ceaabd6ca94b894ab0f3d4f7577, type: 3}
+  - m_GUID: 1d23389b0228dce44b4dadaafcedf959
+    m_Address: AbilityView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 4e803c78ec0781a48b1a7f27c46f5e1a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0fdb3d810a0440f4f9ca71d6442c6e19, type: 2}
+    - {fileID: 11400000, guid: 10b7d01704c5d574fbc516a103753c56, type: 2}

@@ -10,7 +10,7 @@ namespace CarGame2D
         private readonly ItemsRepository _itemsRepository;
         private readonly InventoryModel _abilityInventoryModel;
 
-        private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/AbilitiesView" };
+        private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/AbilitiesCollectionView" };
 
         public AbilityController(ItemsRepository itemsRepository, InventoryModel abilityInventoryModel, AbilityRepository abilityRepository, IAbilityActivator abilityActivator,Transform placeForUI)
         {
@@ -20,6 +20,7 @@ namespace CarGame2D
             _abilityCollectionView = Object.Instantiate(ResourceLoader.LoadObject<AbilityCollectionView>(_viewPath),
                                                 placeForUI,
                                                 false);
+            AddGameObject(_abilityCollectionView.gameObject);
             EquipDefaultAbilities(_itemsRepository);
             _abilityCollectionView.InitView(_abilityInventoryModel.GetEquippedItems());
             _abilityCollectionView.UseRequested += OnAbilityUseRequested;

@@ -1,31 +1,29 @@
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace CarGame2D
 {
     public class MainMenuController : BasicController 
     {
-        private readonly ResourcePath _carPath = new ResourcePath { PathResources = "Prefabs/MainMenu" };
+        private readonly string _key = "MainMenu";
         private readonly ProfilePlayerModel _profilePlayer;
         private readonly MainMenuView _mainMenuView;
 
         public MainMenuController(Transform placeForUI, ProfilePlayerModel profilePlayer)
         {
-            _profilePlayer = profilePlayer;
-            _mainMenuView = LoadView(placeForUI);
-            _mainMenuView.Init(StartGame, DoReward);
+            _profilePlayer = profilePlayer; 
+            LoadViewAsync(placeForUI);            
         }
 
         
 
-        private MainMenuView LoadView(Transform placeForUI)
+        private async void LoadViewAsync(Transform placeForUI)
         {
-            var objectView = Object.Instantiate(ResourceLoader.LoadPrefab(_carPath), placeForUI, false);
-            AddGameObject(objectView);
-
-            if (objectView != null)
-                return objectView.GetComponent<MainMenuView>();
-            else
-                return null;
+            //var objectView = Object.Instantiate(ResourceLoader.LoadPrefab(_path), placeForUI, false);
+            var objectView = (await Addressables.InstantiateAsync(_key, placeForUI, false).Task).GetComponent<MainMenuView>();
+            AddGameObject(objectView.gameObject);
+            objectView.Init(StartGame, DoReward);
         }
 
         private void StartGame()

@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rewardView: {fileID: 2616233851476349855, guid: 66b57ae55e2fa6d40a561b8aa4b57168, type: 3}
-  _currencyView: {fileID: 889397353715884758, guid: 1bcc41eb1e7d5c24e8ea95b886df725c, type: 3}
+  _currencyView: {fileID: 5658721548758927260, guid: 64cd6332c19b2944dac6176cd8bdba2d, type: 3}
   _fightWindowView: {fileID: 5594161820599220883, guid: 58fa0acb3f291724b8f93f68f56cd6a5, type: 3}
   _startFightView: {fileID: 4619746053714447055, guid: 0484a9a1966e8274788540d6a4242db4, type: 3}
   _placeForUi: {fileID: 327503526}

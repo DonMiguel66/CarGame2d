@@ -120,6 +120,9 @@ namespace CarGame2D
                     _inGameUIController?.Dispose();
                     _gameController?.Dispose();
                     _startFightController?.Dispose();
+                    _inventoryController?.Dispose();
+                    _inGameUIController?.Dispose();
+                    _abilityController?.Dispose();
                     break;
                 default:
                     DisposeAllControllers();

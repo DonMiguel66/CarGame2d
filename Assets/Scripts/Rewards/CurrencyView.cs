@@ -17,7 +17,7 @@ public class CurrencyView : MonoBehaviour
     {
         Instance = this;
         _currentCountCandy.text = PlayerPrefs.GetInt(CandyKey).ToString();
-        _currentCountCandy.text = PlayerPrefs.GetInt(DiamondKey).ToString();
+        _currentCountDiamond.text = PlayerPrefs.GetInt(DiamondKey).ToString();
     }
 
     public void AddCandy(int value)

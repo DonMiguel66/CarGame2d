@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace CarGame2D
 {
@@ -16,20 +17,22 @@ namespace CarGame2D
 
         private IReadOnlyList<IItem> _abilityItems;
         private List<AbilityButtonView> _abilityViews;
-        private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/AbilityView" };
+        private readonly string _key = "AbilityView";
+        //private readonly ResourcePath _viewPath = new ResourcePath { PathResources = "Prefabs/AbilityView" };
         private void UseAbility(IItem item)
         {
             UseRequested?.Invoke(item);
         }    
 
-        public void InitView(IReadOnlyList<IItem> abilityItems)
+        public async void InitView(IReadOnlyList<IItem> abilityItems)
         {
             _abilityItems = abilityItems;
             _abilityViews = new List<AbilityButtonView>();
 
             foreach (var ability in _abilityItems)
-            {                
-                var view = Instantiate(ResourceLoader.LoadObject<AbilityButtonView>(_viewPath), _placeForUI, false);
+            {
+                var view = (await Addressables.InstantiateAsync(_key, _placeForUI, false).Task).GetComponent<AbilityButtonView>();
+                //var view = Instantiate(ResourceLoader.LoadObject<AbilityButtonView>(_viewPath), _placeForUI, false);
                 view.Init(ability);
                 view.UseRequested += (sender, item) => UseAbility(item);
                 _abilityViews.Add(view);
